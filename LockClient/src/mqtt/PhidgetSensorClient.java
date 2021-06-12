@@ -26,11 +26,11 @@ public class PhidgetSensorClient {
 	public static String validateServerURL = "http://localhost:8080/PhidgetServer2019Original/ValidateTagUpdateTable";
 	PhidgetPublisher publisher = new PhidgetPublisher();
 	RFID rfid = new RFID();
-    RFIDdata oneTag = new RFIDdata();
-    Gson gson = new Gson();
-    String oneSensorJson = new String();
-    String oneTagJson = new String();
-    static RCServo ch;
+	RFIDdata oneTag = new RFIDdata();
+	Gson gson = new Gson();
+	String oneSensorJson = new String();
+	String oneTagJson = new String();
+	static RCServo ch;
     
 	public static void main(String[] args) throws PhidgetException {
 		new PhidgetSensorClient();
@@ -44,12 +44,12 @@ public class PhidgetSensorClient {
 					int reader = rfid.getDeviceSerialNumber();
 					String tagRead = e.getTag();
 					oneTag.setTagid(tagRead);
-	                oneTag.setReaderid(reader);
+	               			oneTag.setReaderid(reader);
 					System.out.println("DEBUG: Tag read: " + tagRead + " on reader: " + reader);
 	                
-	                oneTagJson = gson.toJson(oneTag);
-	                String resultString = validateTag(oneTagJson);
-	                oneTag = gson.fromJson(resultString, RFIDdata.class);
+					oneTagJson = gson.toJson(oneTag);
+					String resultString = validateTag(oneTagJson);
+					oneTag = gson.fromJson(resultString, RFIDdata.class);
 	               
 	                try {
 	                	if (oneTag.getValid().equals("VALID")) {
